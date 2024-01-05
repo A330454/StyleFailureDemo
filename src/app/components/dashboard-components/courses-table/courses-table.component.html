@@ -1,0 +1,55 @@
+<div class="grid">
+  <div class="col-12">
+     <div class="surface-card shadow-2 border-round p-4">
+      <h3 style="font-family: 'Poppins', sans-serif; text-align: center;">Courses</h3>
+            <p-table responsiveLayout="scroll" [value]="merged_courses_table" [rowHover]="true">
+              <ng-template pTemplate="header">
+                 <tr style="font-family: Montserrat, sans-serif;">
+                  <th>
+                     Status
+                  </th>
+                  <th>
+                     Program
+                  </th>
+                  <th>
+                     Location
+                  </th>
+                  <th>
+                    Date
+                  </th>
+                 </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-tabla style="font-family: Lato, sans-serif;">
+                <tr>
+                  <td *ngIf="tabla.status=='done'">
+                    <!-- <i class="pi pi-check-square" style="font-size: 1.5rem; margin-left: 25px;"></i> -->
+                    <p-tag severity="success" value="Completed"></p-tag>
+                  </td>
+                  <td *ngIf="tabla.status=='in progress'">
+                    <p-tag severity="warning">In Progress</p-tag>
+                  </td>
+                  <td *ngIf="tabla.status !== 'done' && tabla.status !== 'in progress'">
+                    <p-tag severity="danger">Comming Soon!</p-tag>
+                  </td>
+                  <td>
+                    {{ tabla.program }}
+                  </td>
+                  <td>
+                    {{ tabla.location }}
+                  </td>
+                  <td>
+                    {{ tabla.date | date:'MMM dd, yyyy' }}
+                  </td>
+                </tr>
+              </ng-template>
+              </p-table>
+        <p-button styleClass="p-button-danger" label="See All Upcomming" [style]="{'margin-top':'12px','display':'block','width':'70%', 'margin-left':'auto','margin-right':'auto'}"></p-button>
+     </div>
+     <div class="col-12">
+        <div class="border-round p-4">
+           <div class="text-xl text-900 font-medium mb-5">
+           </div>
+        </div>
+     </div>
+  </div>
+</div>

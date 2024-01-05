@@ -1,0 +1,64 @@
+<div class="grid">
+  <div class="col-12 md:col-6 lg:col-3">
+     <div class="p-3 border-round shadow-2 flex align-items-center surface-card">
+        <div style="width:48px; height:48px; border-radius:10px" class="bg-blue-100 inline-flex align-items-center justify-content-center mr-3">
+           <i class="pi pi-car text-blue-500 text-3xl"></i>
+        </div>
+        <div>
+           <span class="text-900 text-xl font-medium mb-2">Total Courses</span>
+           <p class="mt-1 mb-0 text-600 font-medium text-sm">2</p>
+        </div>
+        <div class="ml-auto">
+           <button pButton pRipple icon="pi pi-chevron-down" class="p-button-text p-button-plain p-button-rounded" (click)="menu1.toggle($event)"></button>
+        </div>
+     </div>
+  </div>
+  <div class="col-12 md:col-6 lg:col-3">
+     <div class="p-3 border-round shadow-2 flex align-items-center surface-card">
+        <div style="width:48px;height:48px;border-radius:10px" class="bg-pink-100 inline-flex align-items-center justify-content-center mr-3">
+           <i class="pi pi-users text-pink-600 text-3xl"></i>
+        </div>
+        <div>
+           <span class="text-900 text-xl font-medium mb-2">Total Students</span>
+           <p class="mt-1 mb-0 text-600 font-medium text-sm">21</p>
+        </div>
+        <div class="ml-auto">
+           <button pButton pRipple icon="pi pi-chevron-down" class="p-button-text p-button-plain p-button-rounded" (click)="menu2.toggle($event)"></button>
+        </div>
+     </div>
+  </div>
+  <div class="col-12 md:col-6 lg:col-3">
+     <div class="p-3 border-round shadow-2 flex align-items-center surface-card">
+        <div style="width:48px; height:48px; border-radius:10px" class="bg-teal-100 inline-flex align-items-center justify-content-center mr-3">
+           <i class="pi pi-check-circle text-teal-600 text-3xl"></i>
+        </div>
+        <div>
+           <span class="text-900 text-xl font-medium mb-2">Pass Count</span>
+           <p class="mt-1 mb-0 text-600 font-medium text-sm">21</p>
+        </div>
+        <div class="ml-auto">
+           <button pButton pRipple icon="pi pi-chevron-down" class="p-button-text p-button-plain p-button-rounded" (click)="menu3.toggle($event)"></button>
+        </div>
+     </div>
+  </div>
+  <div class="col-12 md:col-6 lg:col-3">
+     <div class="p-3 border-round shadow-2 flex align-items-center surface-card">
+        <div style="width:48px;height:48px;border-radius:10px" class="bg-orange-100 inline-flex align-items-center justify-content-center mr-3">
+           <i class="pi pi-id-card text-orange-600 text-3xl"></i>
+        </div>
+        <div>
+           <span class="text-900 text-xl font-medium mb-2">Expired Certificates</span>
+           <p class="mt-1 mb-0 text-600 font-medium text-sm">2</p>
+        </div>
+        <div class="ml-auto">
+           <button pButton pRipple icon="pi pi-chevron-down" class="p-button-text p-button-plain p-button-rounded" (click)="menu4.toggle($event)"></button>
+        </div>
+     </div>
+  </div>
+</div>
+
+<!-- Menus -->
+<p-menu #menu1 [popup]="true" [model]="totalCourses" [style]="{'z-index':'9'}" ></p-menu>
+<p-menu #menu4 [popup]="true" [model]="expiredCertificates"></p-menu>
+<p-menu #menu3 [popup]="true" [model]="expiredCertificates"></p-menu>
+<p-menu #menu2 [popup]="true" [model]="expiredCertificates"></p-menu>

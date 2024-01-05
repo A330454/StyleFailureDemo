@@ -1,0 +1,151 @@
+<p-toast position="top-right"></p-toast>
+
+<div class="grid">
+    <div class="col-12 xl:col-12">
+        <div class="border-round">
+            <ul class="list-none p-0 m-0">
+                <p-table #dt [globalFilterFields]="['lastName','firstName','email']" [value]="this.as3StaffList" [scrollable]="true" scrollHeight="400px" [tableStyle]="{'min-width': '50rem'}">
+                    <ng-template pTemplate="caption">
+                        <div class="flex align-items-center justify-content-between">
+                            <h5 class="m-0">AS3 Staff</h5>
+                            <form [formGroup]="SearchForm" class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input formControlName="param" pInputText type="text" placeholder="Buscar..." />
+                            </form>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-member>
+                        <tr (click)="selectStaffMember(member)">
+                            <td>{{member.firstName}} {{member.lastName}}</td>
+                            <td>{{member.email}}</td>
+                            <td>
+                                <button type="button" pButton icon="pi pi-ellipsis-v" class="p-button-text p-button-secondary" (click)="menu2.toggle($event)"></button>
+                                <p-menu #menu2 appendTo="body" [popup]="true" [model]="items"></p-menu>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </ul>
+            <div class="flex justify-content-between pt-3">
+                <button [style]="{'border-radius':'10px'}" pButton pRipple label="Invitar Staff" (click)="inviteStaffModal=true" class="w-12 ml-2"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- invite staff dialog -->
+<p-dialog [(visible)]="inviteStaffModal" appendTo="body" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '52vw'}" header="Edit Payment Method" [draggable]="false" [resizable]="false">
+    <ng-template pTemplate="header">
+            <div class="flex flex-column gap-2">
+                <h1 class="m-0 text-900 font-semibold text-xl line-height-3">Nuevo Miembro del Staff AS3</h1>
+                <span class="text-600 text-base">Brinda acceso al administrador del sistema a tus compañeros.</span>
+            </div>
+    </ng-template>
+    <form [formGroup]="InviteStaffForm" class="flex flex-column gap-3 mt-3">
+        <div class="flex gap-3">
+            <div class="w-full">
+                <label for="cvc" class="block mb-1 text-color text-base">Nombre</label>
+                <span class="p-input-icon-left w-full">
+                    <i class="pi pi-user"></i>
+                    <input formControlName="firstName" type="text" class="w-full" pInputText pKeyFilter="int" placeholder="Aa"/>
+                </span>
+            </div>
+            <div class="w-full">
+                <label for="expiration" class="block mb-1 text-color text-base">Apellido</label>
+                <span class="p-input-icon-left w-full">
+                    <i class="pi pi-user"></i>
+                    <input formControlName="lastName" type="text" class="w-full" pInputText placeholder="Aa"/>
+                </span>
+            </div>
+        </div>
+        <div>
+            <label for="cardholder" class="block mb-1 text-color text-base">Correo</label>
+            <span class="p-input-icon-left w-full">
+                <i class="pi pi-envelope"></i>
+                <input formControlName="email" type="text" class="w-full" pInputText placeholder="ejemplo@correo.com"/>
+            </span>
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <div class="flex gap-3 justify-content-end border-top-1 surface-border pt-5">
+            <button pButton pRipple label="Cancelar" (click)="inviteStaffModal = false" class="p-button-danger p-button-text"></button>
+            <p-button [style]="{'border-radius':'30px'}" severity="danger" pRipple label="Invitar" (click)="inviteStaffMember()" class="p-button-rounded"></p-button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+<!-- DELETE DIALOG -->
+<p-dialog [(visible)]="deleteStaffMemberDialog" appendTo="body" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '40vw'}" [closable]="false" [showHeader]="false">
+    <div class="flex flex-column align-items-center my-4">
+        <span class="flex align-items-center justify-content-center bg-surface-100 text-surface-800 mr-3 border-circle mb-3" style="width:64px;height:64px">
+            <i class="pi pi-exclamation-triangle text-5xl"></i>
+        </span>
+        <div class="font-medium text-2xl text-900">Eliminar Personal</div>
+    </div>
+    <p class="line-height-3 p-0 m-0">
+        Estás a punto de eliminar a <span class="font-medium">{{this.selectedStaffMember.firstName}} {{this.selectedStaffMember.lastName}}</span> de tu lista de personal. Esta acción no se puede deshacer.
+    </p>
+    <ng-template pTemplate="footer">
+        <div class=" border-top-1 surface-border pt-3 flex">
+            <button pButton pRipple icon="pi pi-times" (click)="deleteStaffMemberDialog = false" label="Cancelar" class="p-button-outlined w-6 mr-2"></button>
+            <button pButton pRipple icon="pi pi-trash" (click)="deleteStaffMember()" label="Eliminar" class="p-button-danger w-6 ml-2"></button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+<!-- PROFILE DIALOG -->
+<p-dialog [(visible)]="profileDialog" appendTo="body" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '90vw', height: '95vh', margin: '6px'}" header="{{ 'manage-branding-component-TITLE' | translate }}" [draggable]="true" [resizable]="false" [maximizable]="true">
+    <ng-template pTemplate="header">
+        <div class="flex flex-column gap-2">
+            <h1 class="m-0 text-900 font-semibold text-xl line-height-3">{{ 'edit-profile-TITLE' | translate }}</h1>
+            <span class="text-600 text-base">{{ 'edit-profile-DESCRIPTION' | translate }}</span>
+        </div>
+    </ng-template>
+    <form [formGroup]="profileForm">
+      <p-divider></p-divider>
+      <div class="flex gap-5 flex-column-reverse md:flex-row">
+        <div class="flex-auto p-fluid">
+          <div class="mb-4">
+            <label class="block font-normal text-900 mb-2">{{ 'edit-profile-FIRST-NAME' | translate }}</label>
+            <input type="text" pInputText formControlName="firstName">
+          </div>
+          <div class="mb-4">
+            <label class="block font-normal text-900 mb-2">{{ 'edit-profile-LAST-NAME' | translate }}</label>
+            <input type="text" pInputText formControlName="lastName">
+          </div>
+        </div>
+      </div>
+      <div class="grid formgrid p-fluid" style="margin-top: 10px;">
+        <div class="surface-100 mb-3 col-12" style="height: 2px"></div>
+        <div class="field mb-4 col-12 md:col-6">
+          <label class="font-medium">Empresa</label>
+          <input type="text" pInputText readonly formControlName="company">
+        </div>
+        <div class="field mb-4 col-12 md:col-6">
+          <label class="font-medium">Tipo de Cuenta</label>
+          <input type="text" pInputText readonly formControlName="role">
+        </div>
+        <div class="field mb-4 col-12 md:col-6">
+          <label class="font-medium">Correo Electrónico</label>
+          <input type="text" pInputText value="example@mail.com" formControlName="email">
+        </div>
+        <div class="field mb-4 col-12 md:col-6">
+          <label class="font-medium">Fecha de Registro</label>
+          <input formControlName="dateJoined" type="text" readonly pInputText>
+        </div>
+      </div>
+    </form>
+    <ng-template pTemplate="footer">
+      <div class="flex gap-3 justify-content-end border-top-1 surface-border pt-5">
+        <button (click)="profileDialog=false" pButton pRipple label="Cancelar" class="p-button-text p-button-danger" [style]="{'border-radius':'30px'}"></button>
+        <p-button pRipple label="Guardar" [rounded]="true" severity="danger" icon="pi pi-save" [style]="{'border-radius':'30px'}"></p-button>
+      </div>
+    </ng-template>
+  </p-dialog>

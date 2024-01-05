@@ -1,0 +1,29 @@
+.flipup {
+    animation-duration: .7s;
+}
+
+.flipright {
+    animation-duration: .7s;
+}
+
+.flipleft {
+    animation-duration: .7s;
+}
+
+.zoomin{
+    animation-duration: .7s;
+}
+
+/* Estilo por defecto para PC y laptop */
+input[formControlName="param"] {
+    width: 100%; /* o el ancho que prefieras */
+    /* Agrega aquí cualquier otro estilo que necesites */
+}
+
+/* Media query para pantallas de tablet y móvil */
+@media screen and (max-width: 768px) {
+    input[formControlName="param"] {
+        width: 80%; /* Reduce el tamaño para dispositivos más pequeños */
+        /* Puedes ajustar otros estilos si es necesario */
+    }
+}

@@ -1,0 +1,53 @@
+<div class="p-5 flex flex-column flex-auto">
+  <div>
+      <form  class="surface-card p-4 shadow-2 border-round">
+        <div class="text-900 font-semibold text-lg mt-3" style="font-family: 'Poppins', sans-serif;">Manage Groups</div>
+        <p-divider></p-divider>
+        <p-table  [value]="groups" [tableStyle]="{'min-width': '50rem'}">
+          <ng-template pTemplate="header">
+              <tr>
+                  <th><span class="font-semibold text-sm text-color-secondary">Name</span></th>
+                  <th><span class="font-semibold text-sm text-color-secondary">Joined Date</span></th>
+                  <th><span class="font-semibold text-sm text-color-secondary">Manage Groups</span></th>
+                  <th><span class="font-semibold text-sm text-color-secondary">Manage Billing</span></th>
+                  <th><span class="font-semibold text-sm text-color-secondary">Manage Users</span></th>
+                  <th><span class="font-semibold text-sm text-color-secondary">Manage Company</span></th>
+                  <th></th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-member>
+              <tr>
+                  <td>
+                      <div class="flex align-items-center gap-3">
+                          <p-avatar [image]="member.image" styleClass="mr-2" size="large" shape="circle"></p-avatar>
+                          <div>
+                              <p class="mt-0 mb-2 font-medium text-lg text-color-primary">{{member.name}}</p>
+                              <p class="mt-0 mb-2 font-normal text-base text-color-secondary">Participants: {{member.participants}}</p>
+                          </div>
+                      </div>
+                  </td>
+                  <td><p class="mt-0 mb-2 font-normal text-base text-color-secondary">{{member.date}}</p></td>
+                  <td>
+                    <div>
+                      <p-checkbox [style]="{'margin-left':'99%'}" [binary]="true" inputId="binary"></p-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <p-checkbox [style]="{'margin-left':'99%'}" [binary]="true" inputId="binary"></p-checkbox>
+                  </td>
+                  <td>
+                    <p-checkbox [style]="{'margin-left':'99%'}" [binary]="true" inputId="binary"></p-checkbox>
+                  </td>
+                  <td>
+                    <p-checkbox [style]="{'margin-left':'99%'}" [binary]="true" inputId="binary"></p-checkbox>
+                  </td>
+                  <td>
+                      <button type="button" pButton icon="pi pi-ellipsis-v" class="p-button-text p-button-secondary" (click)="menu.toggle($event)"></button>
+                      <p-menu #menu appendTo="body" [popup]="true" [model]="menu_items"></p-menu>
+                  </td>
+              </tr>
+          </ng-template>
+        </p-table>
+      </form>
+  </div>
+</div>

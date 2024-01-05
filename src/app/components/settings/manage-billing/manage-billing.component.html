@@ -1,0 +1,42 @@
+<div class="p-5 flex flex-column flex-auto">
+  <div>
+      <div  class="surface-card p-4 shadow-2 border-round">
+        <form class="flex flex-column w-full mt-4">
+          <p class="font-semibold text-xl mt-0 mb-4 text-900" style="font-family: 'Poppins', sans-serif;">Manage Payment Info</p>
+          <p-divider></p-divider>
+          <div class="flex justify-content-between w-full align-items-center border-1 p-3 border-round surface-border mb-2 cursor-pointer" [ngClass]="{'surface-hover': payment === 'Visa'}" (click)="payment = 'Visa'">
+              <div>
+                  <div class="flex align-items-center mb-3">
+                      <img src="./assets/img/cards/visa.svg" alt="Image" class="mr-2 w-3rem border-1 surface-border border-round">
+                      <p class="font-medium text-xl mt-0 mb-0 mr-2 text-900">Visa ending in 1234</p>
+                      <span class="p-tag">Default</span>
+                  </div>
+                  <p class="font-medium text-base mt-0 mb-0 text-600">Expires 12/2038</p>
+              </div>
+              <!-- <p-radioButton name="payment" value="Visa" [(ngModel)]="payment" inputId="payment1"></p-radioButton> -->
+          </div>
+          <div class="flex justify-content-between w-full align-items-center border-1 p-3 border-round surface-border mb-2 cursor-pointer" [ngClass]="{'surface-hover': payment === 'MasterCard'}" (click)="payment = 'MasterCard'">
+              <div>
+                  <div class="flex align-items-center mb-3">
+                      <img src="./assets/img/cards/master_card.svg" alt="Image" class="mr-2 w-3rem border-1 surface-border border-round">
+                      <p class="font-medium text-xl mt-0 mb-0 text-900">MasterCard ending in 1234</p>
+                  </div>
+                  <p class="font-medium text-base mt-0 mb-0 text-600">Expires 07/2025</p>
+              </div>
+              <!-- <p-radioButton name="payment" value="MasterCard" [(ngModel)]="payment" inputId="payment1"></p-radioButton> -->
+          </div>
+          <div class="flex justify-content-between w-full align-items-center border-1 p-3 border-round surface-border opacity-50" [ngClass]="{'surface-hover': payment === 'Other'}">
+              <div>
+                  <div class="flex align-items-center mb-3">
+                      <img src="./assets/img/cards/visa.svg" alt="Image" class="mr-2 w-3rem border-1 surface-border border-round">
+                      <p class="font-medium text-xl text-900 mt-0 mb-0 mr-2">Visa ending in 1234</p>
+                      <span class="p-tag bg-red-500 text-white">Expired</span>
+                  </div>
+                  <p class="font-medium text-base text-600 mt-0 mb-0">Expires 01/2022</p>
+              </div>
+              <!-- <p-radioButton name="payment" value="Other" [(ngModel)]="payment" inputId="payment1" [disabled]="true"></p-radioButton> -->
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
