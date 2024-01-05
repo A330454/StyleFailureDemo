@@ -10,16 +10,6 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { LOCALE_ID } from '@angular/core';
 import { LoginComponent } from './pages/generics/login/login.component';
-import { NavbarComponent } from './components/generics/navbar/navbar.component';
-import { ManageCorporateUsersComponent } from './components/settings/manage-corporate-users/manage-corporate-users.component';
-import { ManageBillingComponent } from './components/settings/manage-billing/manage-billing.component';
-import { CourseManagementComponent } from './components/settings/course-management/course-management.component';
-import { ManageGroupsComponent } from './components/settings/manage-groups/manage-groups.component';
-import { ManageBrandingComponent } from './components/settings/manage-branding/manage-branding.component';
-import { EditProfileComponent } from './components/settings/edit-profile/edit-profile.component';
-import { CompanyInfoCardsComponent } from './components/dashboard-components/company-info-cards/company-info-cards.component';
-import { CoursesTableComponent } from './components/dashboard-components/courses-table/courses-table.component';
-import { HomeComponent } from './components/admin/home/home.component';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
@@ -60,9 +50,6 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { LandingNavbarComponent } from './components/generics/landing-navbar/landing-navbar.component';
-import { SupportTicketsComponent } from './components/admin/support-tickets/support-tickets.component';
-import { StaffInviteComponent } from './components/admin/staff-invite/staff-invite.component';
 
 registerLocaleData(localeEs);
 
@@ -70,19 +57,6 @@ registerLocaleData(localeEs);
   declarations: [
     AppComponent,
     LoginComponent,
-    NavbarComponent,
-    ManageCorporateUsersComponent,
-    ManageBillingComponent,
-    CourseManagementComponent,
-    ManageGroupsComponent,
-    ManageBrandingComponent,
-    EditProfileComponent,
-    CompanyInfoCardsComponent,
-    CoursesTableComponent,
-    LandingNavbarComponent,
-    HomeComponent,
-    SupportTicketsComponent,
-    StaffInviteComponent,
   ],
   imports: [
     BrowserModule,

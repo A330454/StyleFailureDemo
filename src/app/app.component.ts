@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { CurrentLangService } from './services/currentLang/current-lang.service';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +10,7 @@ export class AppComponent {
   title = 'AS3-Portal';
 
   constructor(
-    translate:TranslateService,
-    CurrentLangService:CurrentLangService) {
+    translate:TranslateService,) {
     translate.addLangs(['en','es'])
     // default language config
     translate.setDefaultLang('es');
